@@ -1,0 +1,46 @@
+.navbar{
+    width:95%;
+    height:50px;
+    background-color: #222;
+    display:flex;
+    align-items: center;
+    justify-content: space-between;
+    padding:0px 20px;
+
+}
+.logo{
+    color:#fff;
+    font-size: 20px;
+}
+.navbar ul{
+    display: inline-flex;
+    gap:10px;
+
+}
+.navbar ul li{
+    margin: 0px;
+}
+.navbar ul li:first-child{
+    list-style-type: none;
+    margin-top: 6px;
+    
+}
+.navbar ul li a{
+    color:#fff;
+    text-decoration: none;
+  
+}
+.cart-count{
+    background-color: yellowgreen;
+    padding:5px;
+    display:inline-block;
+    height:20px;
+    width:20px;
+    border-radius: 50%;
+    font-size: 18px;
+    text-align: center;
+    color:#222;
+    margin-right:3px
+    
+
+}

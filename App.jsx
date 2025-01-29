@@ -1,43 +1,32 @@
-import {useState,useEffect} from "react";
-import "./App.css";
+import { Header } from './components/Header'
+import './App.css'
+import { BrowserRouter, Route,Routes } from 'react-router-dom'
+import { Home } from './components/Home'
+import { ViewCart} from './components/ViewCart'
+import { cartContext } from './components/cartContext';
+import { useState } from 'react'
 
-function App(){
-  const [currentTime,setCurrentTime] = useState(new Date());
-  useEffect(()=>{
-    const timer = setInterval(()=>{
-      setCurrentTime(new Date());
-    },1000);
 
-    return ()=>clearInterval(timer);
-  },[]);
 
-  const formatHour = (hour) =>{
-    return hour ===0 ? 12 :hour>12 ? hour - 12:hour;
-  };
 
-  const formatTimeWithLeadingZero = (num) =>{
-    return num <10 ? `0${num}` : num;
-  };
-
-      const formatDate = (date) =>{
-        const options = {weekday: "long",year:"numeric",month:"long"};
-        return date.toLocaleDateString(undefined,options)};  
-      
-    
+function App() {
+  const [cart,setCart]=useState([])
 
   return (
-    <>
-      <div className='digital-clock'>
-        <h1>Digital Clock</h1>
-        <div className='time'>{formatTimeWithLeadingZero(formatHour(currentTime.getHours()))} :
-        {formatTimeWithLeadingZero(currentTime.getMinutes())} :
-        {formatTimeWithLeadingZero(currentTime.getSeconds())} 
-        {currentTime.getHours() >=12 ? " PM" :" AM"}
-        
-        </div>
-        <div className='date'>{formatDate(currentTime)}</div>
+    //this  context (cart,setCart) pass all component
+   <cartContext.Provider value={{cart,setCart}}>
+      <BrowserRouter>
+      <Header cart={cart}/>
+      <div className='container'>
+        <Routes>
+          <Route path="/" element={<Home/> } />
+          <Route path="/Cart" element={<ViewCart />} />
+        </Routes>
       </div>
-    </>
+      </BrowserRouter>
+      
+      
+    </cartContext.Provider>
   )
 }
 
